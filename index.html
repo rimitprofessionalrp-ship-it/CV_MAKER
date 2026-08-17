@@ -110,7 +110,7 @@
     <div class="no-print bg-gradient-to-r from-black via-zinc-900 to-black border-b border-amber-500/30 py-2.5 px-4 flex justify-center items-center shadow-lg relative">
         <div class="flex items-center justify-center gap-2 text-center">
             <i class="fa-solid fa-crown text-amber-400 text-sm"></i>
-            <span class="gold-gradient-text font-extrabold text-base tracking-widest uppercase">CRAFT BY RIMIT</span>
+            <span class="gold-gradient-text font-extrabold text-base tracking-widest uppercase">CRAFTED BY RIMIT</span>
             <i class="fa-solid fa-gem text-amber-400 text-xs ml-1"></i>
         </div>
     </div>
@@ -123,6 +123,9 @@
                 <h1 class="text-base font-bold tracking-wide">Interactive CV Builder Studio</h1>
             </div>
             <div class="flex items-center gap-2">
+                <button onclick="loadSampleData()" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded text-xs font-medium transition-all shadow flex items-center gap-1">
+                    <i class="fa-solid fa-download"></i> Load Sample Data(NO PERSONAL DATA LOAD)
+                </button>
                 <button onclick="clearAllData()" class="bg-rose-700 hover:bg-rose-800 text-white px-3 py-1.5 rounded text-xs font-medium transition-all shadow">
                     <i class="fa-solid fa-trash mr-1"></i> Clear Form
                 </button>
@@ -344,9 +347,9 @@
     <footer class="no-print mt-auto bg-gradient-to-r from-black via-zinc-950 to-black border-t border-amber-500/30 py-4 px-6 text-center shadow-2xl">
         <div class="flex flex-col items-center justify-center max-w-7xl mx-auto gap-1 text-center">
             <div class="flex items-center justify-center gap-2">
-                <span class="text-xs text-slate-400 font-light">Crafted with</span>
+                <span class="text-xs text-slate-400 font-light"></span>
                 <i class="fa-solid fa-gem text-amber-400 text-xs"></i>
-                <span class="gold-gradient-text font-black text-sm tracking-widest uppercase">CRAFT BY RIMIT</span>
+                <span class="gold-gradient-text font-black text-sm tracking-widest uppercase">DEVELOPED BY RIMIT</span>
             </div>
             <p class="text-[11px] text-slate-500">Interactive Resume & Printable PDF Builder Studio</p>
         </div>
@@ -722,6 +725,106 @@
                     </div>
                 `;
             });
+        }
+
+        // --- LOAD SAMPLE DATA FUNCTION (Top to Education remains BLANK, rest loaded) ---
+        function loadSampleData() {
+            // Top to Education: Keep Blank/Clear
+            document.getElementById('inputName').value = "";
+            document.getElementById('inputTitle').value = "";
+            document.getElementById('inputPhone').value = "";
+            document.getElementById('inputEmail').value = "";
+            document.getElementById('inputLinkedin').value = "";
+            document.getElementById('inputAbout').value = "";
+
+            personalDetails = [
+                { id: 1, label: "FATHER'S NAME", value: "" },
+                { id: 2, label: "MOTHER'S NAME", value: "" },
+                { id: 3, label: "DATE OF BIRTH", value: "" },
+                { id: 4, label: "GENDER", value: "" },
+                { id: 5, label: "NATIONALITY", value: "" },
+                { id: 6, label: "RELIGION", value: "" },
+                { id: 7, label: "MARITAL STATUS", value: "" },
+                { id: 8, label: "BLOOD GROUP", value: "" },
+                { id: 9, label: "NID NO.", value: "" },
+                { id: 10, label: "CURRENT ADDRESS", value: "" },
+                { id: 11, label: "PERMANENT ADDRESS", value: "" }
+            ];
+
+            educations = [];
+
+            // From Skills onwards: Load Sample Data
+            skills = [
+                { id: 1, label: "Computer Skills", value: "MS Word, MS Excel, Data Entry, Documentation" },
+                { id: 2, label: "Engineering Software", value: "AutoCAD, LTspice, Proteus, Microwind, DSCH, Tanner EDA, Arduino" },
+                { id: 3, label: "Programming", value: "MATLAB" },
+                { id: 4, label: "Soft Skills", value: "Communication, Problem Solving, Teamwork, Time Management" }
+            ];
+
+            languages = [
+                { id: 1, name: "Bangla", level: "Native" },
+                { id: 2, name: "English", level: "Basic Communication" }
+            ];
+
+            trainings = [
+                {
+                    id: 1,
+                    category: "INDUSTRIAL TRAINING",
+                    title: "Industrial Technology in Electrical Engineering & Instrumentation",
+                    institute: "Training Institute for Chemical Industries (TICI), Polash, Narsingdi",
+                    duration: "17 - 29 May 2025",
+                    desc: "Gained extensive hands-on experience programming and troubleshooting PLCs and configuring SCADA systems for process monitoring. Analyzed and interpreted complex industrial documentation, including Piping and Instrumentation Diagrams (P&IDs) and electrical ladder logic schematics. Calibrated and deployed various industrial sensors for measuring pressure, flow, and temperature in simulated process environments. Acquired basic knowledge of DCS control, motor starting methods, and industrial safety."
+                },
+                {
+                    id: 2,
+                    category: "TECHNICAL WORKSHOP",
+                    title: "Microcontrollers to IoT with JRC Board",
+                    institute: "FronTech Limited, Mohakhali DOHS",
+                    duration: "24 - 26 Feb 2024",
+                    desc: "Participated in a specialized hands-on workshop focused on microcontrollers, JRC development boards, and hardware testing. Gained experience compiling projects, establishing IoT connections, and integrating physical devices using MATLAB programming."
+                }
+            ];
+
+            references = [
+                {
+                    id: 1,
+                    name: "Md. Liton Rabbani",
+                    title: "Principal (Additional Charge)",
+                    dept: "Associate Professor, Department of Civil Engineering",
+                    org: "Barisal Engineering College",
+                    phone: "01745599180",
+                    email: "liton.duengg@bec.edu.bd"
+                },
+                {
+                    id: 2,
+                    name: "Engr. Sabuj Ahmed",
+                    title: "Assistant Professor",
+                    dept: "Department of EEE",
+                    org: "Barisal Engineering College",
+                    phone: "01917421884",
+                    email: "sabujahmed.duengg@bec.edu.bd"
+                }
+            ];
+
+            renderPersonalForm();
+            renderPersonalCV();
+
+            renderSkillForm();
+            renderSkillCV();
+
+            renderLangForm();
+            renderLangCV();
+
+            renderEduForm();
+            renderEduCV();
+
+            renderTrainingForm();
+            renderTrainingCV();
+
+            renderRefForm();
+            renderRefCV();
+
+            updateCV();
         }
 
         // --- CLEAR ALL DATA FUNCTION ---
